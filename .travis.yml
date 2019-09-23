@@ -2,17 +2,18 @@ language: bash
 
 services: docker
 
-before_install:
-  - docker build -t $REGISTRY/blackeeper/postgres:10.7-with-postgis .
 jobs:
   include:
+    - stage: build
+      script:
+        - docker build -t $REGISTRY/blackeeper/postgres:10.7-with-postgis .
     - stage: test
       script:
         - docker run --name postgis -it -d $REGISTRY/blackeeper/postgres:10.7-with-postgis
+        - docker ps -a
         - docker exec -it postgis bash /postgis_test.sh 
     - stage: upload build images to aliyun
-    script:
-      - docker ps -a
-      - docker info
-      - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin $REGISTRY
-      - docker push $REGISTRY/blackeeper/postgres:10.7-with-postgis
+      script:
+        - docker info
+        - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin $REGISTRY
+        - docker push $REGISTRY/blackeeper/postgres:10.7-with-postgis
