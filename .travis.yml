@@ -3,4 +3,9 @@ language: bash
 services: docker
 
 before_install:
-  - docker build -t blackeeper/postgre:10.7-with-postgis
+  - docker build -t $REGISTER/blackeeper/postgre:10.7-with-postgis
+script:
+  - docker ps -a
+  - docker info
+  - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin $REGISTER
+  - docker push $REGISTER/blackeeper/postgre:10.7-with-postgis
