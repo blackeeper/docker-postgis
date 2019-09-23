@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y curl gcc make postgresql-server-dev-10 
 	&& make \
 	&& make install \
 	#清理不必要的依赖
-	&& apt-get remove -y --purge  gcc make postgresql-server-dev-10 libxml2-dev libgeos-dev libproj-dev libgdal-dev \
+	&& apt-get remove -y --purge  gcc make  libxml2-dev libgeos-dev libproj-dev libgdal-dev \
 	&& apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
