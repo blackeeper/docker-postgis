@@ -1,3 +1,4 @@
+#!/bin/bash
 su postgres
 psql -c "CREATE DATABASE yourdatabase;"
 psql -d yourdatabase -c "CREATE EXTENSION postgis;"
