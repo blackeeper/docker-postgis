@@ -1,0 +1,6 @@
+language: bash
+
+services: docker
+
+before_install:
+  - docker build -t blackeeper/postgre:10.7-with-postgis
