@@ -11,8 +11,8 @@ jobs:
         - docker run --name postgis -it -d $REGISTRY/blackeeper/postgres:10.7-with-postgis
         - docker exec -it postgis bash /postgis_test.sh 
     - stage: upload build images to aliyun
-	  script:
-	    - docker ps -a
-	    - docker info
-	    - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin $REGISTRY
-	    - docker push $REGISTRY/blackeeper/postgres:10.7-with-postgis
+    script:
+      - docker ps -a
+      - docker info
+      - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin $REGISTRY
+      - docker push $REGISTRY/blackeeper/postgres:10.7-with-postgis
