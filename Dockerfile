@@ -7,7 +7,7 @@ ENV postgis_version postgis-2.5.3
 COPY postgis_test.sh /
 
 #编译安装
-RUN apt-get update && apt-get install -y curl gcc make postgresql-server-dev-10 libxml2-dev libgeos-dev libproj-dev libgdal-dev \
+RUN apt-get update && apt-get install -y curl gcc make postgresql-server-dev-10 libxml2-dev libgeos-dev libproj-dev libgdal-dev libjson-c3 libgdal20 \
 	&& curl -SLO https://download.osgeo.org/postgis/source/$postgis_version.tar.gz \
 	&& tar -xf $postgis_version.tar.gz -C /usr/local/src/ \
 	&& rm -rf $postgis_version.tar.gz \
